@@ -1,0 +1,51 @@
+# 2. Automated Implementation
+
+## 2.1 SSH Key Authentication Setup
+Established secure passwordless authentication for Ansible automation.
+
+![SSH Key Setup](section-2-assets/1-ssh-key-authentication.png)
+
+**Key Steps:**
+- Generated ED25519 SSH key pair
+- Deployed public key to target server
+- Verified passwordless connectivity
+
+## 2.2 Ansible Inventory Configuration
+Configured dynamic inventory management for multi-environment deployment.
+
+![Ansible Inventory](section-2-assets/2-ansible-inventory.png)
+
+**Features:**
+- Group-based variable inheritance
+- SSH key-based authentication
+- Scalable host management
+
+## 2.3 Connectivity Validation
+Verified infrastructure connectivity and Ansible operational readiness.
+
+![Connectivity Test](section-2-assets/3-connectivity-testing.png)
+
+**Validation:**
+- SSH connectivity established
+- Ansible ping successful
+- Python interpreter discovery
+
+## 2.4 Troubleshooting & Optimization
+Resolved privilege escalation issues and optimized configuration.
+
+![Troubleshooting Fix](section-2-assets/4-troubleshooting-fix.png)
+
+**Solutions Implemented:**
+- Fixed sudo timeout issues
+- Configured ansible.cfg for optimal performance
+- Established reliable automation foundation
+
+## 2.5 Playbook Architecture
+Designed role-based automation framework for security hardening.
+
+![Playbook Structure](section-2-assets/5-playbook-structure.png)
+
+**Architecture:**
+- Modular role-based design
+- SSH hardening implementation
+- Template-driven configuration

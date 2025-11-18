@@ -1,0 +1,5 @@
+---
+# Default variables for SSH hardening
+ssh_port: 22
+ssh_permit_root_login: false
+ssh_password_authentication: false

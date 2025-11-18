@@ -1,0 +1,16 @@
+---
+- name: Configure hardened SSH daemon
+  template:
+    src: sshd_config.j2
+    dest: /etc/ssh/sshd_config
+    backup: yes
+    validate: '/usr/sbin/sshd -t -f %s'
+  become: yes  # ← ADD THIS LINE
+  notify: restart ssh
+
+- name: Ensure SSH service is enabled and running
+  service:
+    name: ssh
+    state: started
+    enabled: yes
+  become: yes  # ← ADD THIS LINE

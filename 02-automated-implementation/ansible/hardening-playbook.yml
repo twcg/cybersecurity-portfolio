@@ -1,0 +1,8 @@
+---
+- name: Linux Security Hardening
+  hosts: all
+  become: yes
+  gather_facts: yes
+  
+  roles:
+    - ssh-hardening

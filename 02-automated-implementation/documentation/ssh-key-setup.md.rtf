@@ -1,0 +1,44 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fmodern\fcharset0 Courier;\f1\froman\fcharset0 Times-Roman;\f2\froman\fcharset0 Times-Bold;
+}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs26 \cf0 \expnd0\expndtw0\kerning0
+# SSH Key Setup & Ansible Configuration\
+\
+## Problem Identified\
+- Ubuntu server had empty `authorized_keys` file\
+- No SSH key authentication configured\
+- Ansible requires passwordless SSH keys to function\
+\
+## Solution Implemented\
+\
+### 1. Generated ED25519 SSH Key\
+```bash\
+ssh-keygen -t ed25519 -f ~/.ssh/portfolio_key -N ""\
+\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f1\fs28 \cf0 2. Deployed Public Key to Ubuntu Server\
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs26 \cf0 ssh-copy-id -i ~/.ssh/portfolio_key lab@172.16.39.136\
+\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f1\fs28 \cf0 3. Verified Key-Based Authentication\
+ssh -i ~/.ssh/portfolio_key lab@172.16.39.136\
+# Success: Logged in without password prompt\
+4. Updated Ansible Inventory\
+webservers:\
+  hosts:\
+    ubuntu-server:\
+      ansible_host: 172.16.39.136\
+      ansible_user: lab\
+      ansible_ssh_private_key_file: ~/.ssh/portfolio_key
+\f2\b \
+}
