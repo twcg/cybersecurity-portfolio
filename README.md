@@ -13,7 +13,7 @@
 | Control | CIS Benchmark | Status | Evidence |
 |---------|---------------|--------|----------|
 Control	CIS Benchmark	Status	Evidence
-Disable root SSH login	5.2.8	✅ Implemented	View Code
+Disable root SSH login	5.2.8	✅ Implemented	View Code https://github.com/twcg/cybersecurity-portfolio/blob/cybersecurity-portfolio/02-automated-implementation/ansible/roles/ssh-hardening/templates/sshd_config.j2#L8
 Disable password authentication	5.2.3	✅ Implemented	View Code
 Configure SSH Protocol	5.2.2	✅ Implemented	View Code
 Set MaxAuthTries	5.2.5	✅ Implemented	View Code
