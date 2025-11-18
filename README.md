@@ -1,2 +1,94 @@
 # cybersecurity-portfolio
 Security Automation | Ansible | Terraform | CIS Benchmarks | NIST 800-53 Linux Hardening | Cloud Security | Infrastructure-as-Code | DevSecOps
+
+
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fmodern\fcharset0 Courier-Bold;\f1\froman\fcharset0 Times-Bold;\f2\froman\fcharset0 Times-Roman;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs48 \cf0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 # \uc0\u55357 \u56594  CIS Compliance Checklist\
+\pard\pardeftab720\partightenfactor0
+
+\fs28 \cf0 \
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f1 \cf0 \strokec2 \uc0\u55356 \u57263  Status Indicator Key:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa240\partightenfactor0
+\ls1\ilvl0
+\f2\b0 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u9989  
+\f1\b Implemented
+\f2\b0  - Control is fully implemented and verified\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u55357 \u57313  
+\f1\b Planned
+\f2\b0  - Control is scheduled for implementation\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u55357 \u56628  
+\f1\b Not Started
+\f2\b0  - Control not yet addressed\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u9989  
+\f1\b Automated
+\f2\b0  - Control enforced via infrastructure-as-code\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \uc0\u55357 \u56580  
+\f1\b Manual
+\f2\b0  - Requires manual configuration/verification\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b \cf0 \strokec2 \
+\
+
+\fs48 ## SSH Hardening Status\
+
+\fs28 \
+| Control | CIS Benchmark | Status | Evidence |\
+|---------|---------------|--------|----------|\
+| Disable root SSH login | 5.2.8 | \uc0\u9989  **Implemented** | [View Code](../02-automated-implementation/ansible/roles/ssh-hardening/templates/sshd_config.j2#L8) |\
+| Disable password authentication | 5.2.3 | \uc0\u9989  **Implemented** | [View Code](../02-automated-implementation/ansible/roles/ssh-hardening/templates/sshd_config.j2#L9) |\
+| Configure SSH Protocol | 5.2.2 | \uc0\u9989  **Implemented** | [View Code](../02-automated-implementation/ansible/roles/ssh-hardening/templates/sshd_config.j2#L5) |\
+| Set MaxAuthTries | 5.2.5 | \uc0\u9989  **Implemented** | [View Code](../02-automated-implementation/ansible/roles/ssh-hardening/templates/sshd_config.j2#L6) |\
+| Configure ClientAlive intervals | 5.2.12 | \uc0\u9989  **Implemented** | [View Code](../02-automated-implementation/ansible/roles/ssh-hardening/templates/sshd_config.j2#L7) |\
+| Firewall configuration | 3.5.1.1 | \uc0\u55357 \u57313  **Planned** | Target: Q1 2024 |\
+| Auditd implementation | 4.1.1.1 | \uc0\u55357 \u57313  **Planned** | Target: Q1 2024 |\
+\
+
+\fs48 ## \uc0\u55357 \u56522  Compliance Summary\
+
+\fs28 - **Implemented**: 5 controls\
+- **Planned**: 2 controls  \
+- **Total Coverage**: 71% of SSH controls\
+\
+# \uc0\u55357 \u57057 \u65039  Security Compliance Dashboard\
+\
+
+\fs48 ## SSH Service Hardening\
+
+\fs28 ```complacency\
+CIS Control 5.2: SSH Server Configuration\
+\uc0\u9989  5.2.2 - Configure SSH Protocol 2          [IMPLEMENTED]\
+\uc0\u9989  5.2.3 - Disable SSH Password Authentication [IMPLEMENTED]  \
+\uc0\u9989  5.2.5 - Set SSH MaxAuthTries to 3         [IMPLEMENTED]\
+\uc0\u9989  5.2.8 - Disable SSH Root Login            [IMPLEMENTED]\
+\uc0\u9989  5.2.12 - Configure SSH Idle Timeout       [IMPLEMENTED]\
+\uc0\u55357 \u57313  3.5.1.1 - Configure UFW Firewall         [PLANNED]\
+\uc0\u55357 \u57313  4.1.1.1 - Configure auditd               [PLANNED]\
+```\
+\
+**Progress: \uc0\u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608 \u9608  71%** (5/7 controls implemented)\
+\
+
+\fs36 ## \uc0\u55357 \u56599  Evidence Links\
+
+\fs28 - [View Ansible Implementation](../02-automated-implementation/ansible/roles/ssh-hardening/)\
+- [View SSH Configuration Template](../02-automated-implementation/ansible/roles/ssh-hardening/templates/sshd_config.j2)\
+- [Execution Evidence](../02-automated-implementation/documentation/assets/screenshots/execution-success.png)}
