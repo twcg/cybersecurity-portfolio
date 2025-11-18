@@ -10,16 +10,18 @@
 
 ## SSH Hardening Status
 
+## SSH Hardening Status
+
 | Control | CIS Benchmark | Status | Evidence |
 |---------|---------------|--------|----------|
-Control	CIS Benchmark	Status	Evidence
-Disable root SSH login	5.2.8	✅ Implemented	View Code https://github.com/twcg/cybersecurity-portfolio/blob/cybersecurity-portfolio/02-automated-implementation/ansible/roles/ssh-hardening/templates/sshd_config.j2#L8
-Disable password authentication	5.2.3	✅ Implemented	View Code
-Configure SSH Protocol	5.2.2	✅ Implemented	View Code
-Set MaxAuthTries	5.2.5	✅ Implemented	View Code
-Configure ClientAlive intervals	5.2.12	✅ Implemented	View Code
-Firewall configuration	3.5.1.1	🟡 Planned	Target: Q1 2024
-Auditd implementation	4.1.1.1	🟡 Planned	Target: Q1 2024
+| Disable root SSH login | 5.2.8 | ✅ **Implemented** | [View Code](https://github.com/twcg/cybersecurity-portfolio/blob/cybersecurity-portfolio/02-automated-implementation/ansible/roles/ssh-hardening/templates/sshd_config.j2#L8) |
+| Disable password authentication | 5.2.3 | ✅ **Implemented** | [View Code](https://github.com/twcg/cybersecurity-portfolio/blob/cybersecurity-portfolio/02-automated-implementation/ansible/roles/ssh-hardening/templates/sshd_config.j2#L9) |
+| Configure SSH Protocol | 5.2.2 | ✅ **Implemented** | [View Code](https://github.com/twcg/cybersecurity-portfolio/blob/cybersecurity-portfolio/02-automated-implementation/ansible/roles/ssh-hardening/templates/sshd_config.j2#L5) |
+| Set MaxAuthTries | 5.2.5 | ✅ **Implemented** | [View Code](https://github.com/twcg/cybersecurity-portfolio/blob/cybersecurity-portfolio/02-automated-implementation/ansible/roles/ssh-hardening/templates/sshd_config.j2#L6) |
+| Configure ClientAlive intervals | 5.2.12 | ✅ **Implemented** | [View Code](https://github.com/twcg/cybersecurity-portfolio/blob/cybersecurity-portfolio/02-automated-implementation/ansible/roles/ssh-hardening/templates/sshd_config.j2#L7) |
+| Firewall configuration | 3.5.1.1 | 🟡 **Planned** | Target: Q4 2025 |
+| Auditd implementation | 4.1.1.1 | 🟡 **Planned** | Target: Q4 2025 |
+
 ## 📊 Compliance Summary
 - **Implemented**: 5 controls
 - **Planned**: 2 controls  
