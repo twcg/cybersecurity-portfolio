@@ -44,6 +44,6 @@ CIS Control 5.2: SSH Server Configuration
 **Progress: ██████████ 71%** (5/7 controls implemented)
 
 ## 🔗 Evidence Links
-- [View Ansible Implementation](../02-automated-implementation/ansible/roles/ssh-hardening/)
-- [View SSH Configuration Template](../02-automated-implementation/ansible/roles/ssh-hardening/templates/sshd_config.j2)
-- [Execution Evidence](../02-automated-implementation/documentation/assets/screenshots/execution-success.png)
+- [View Ansible Implementation](https://github.com/twcg/cybersecurity-portfolio/tree/cybersecurity-portfolio/02-automated-implementation/ansible/roles/ssh-hardening/)
+- [View SSH Configuration Template](https://github.com/twcg/cybersecurity-portfolio/blob/cybersecurity-portfolio/02-automated-implementation/ansible/roles/ssh-hardening/templates/sshd_config.j2)
+- [Execution Evidence](https://github.com/twcg/cybersecurity-portfolio/blob/cybersecurity-portfolio/02-automated-implementation/documentation/assets/screenshots/execution-success.png)
