@@ -1,0 +1,24 @@
+# Automated Security Hardening Case Study
+
+## Infrastructure-as-Code Implementation
+
+### Foundation Setup
+![SSH Key Authentication](screenshots/foundation-setup/ssh_key_test_better.png)
+*Secure passwordless authentication established*
+
+![Ansible Connectivity](screenshots/foundation-setup/connectivity_test.png)
+*Infrastructure connectivity verified*
+
+### Automation Architecture
+![Ansible Structure](screenshots/automation-strucutre/tree.png)
+*Role-based Ansible architecture for scalable security*
+
+![Inventory Configuration](screenshots/automation-strucutre/inventory_configuration.png)
+*Dynamic inventory management for multi-environment deployment*
+
+### Execution & Validation
+![Playbook Execution](screenshots/execution-evidence/successful_playbook_run.png)
+*Ansible playbook successfully hardening SSH configuration*
+
+![Security Verification](screenshots/execution-evidence/Verification of changes.png)
+*SSH hardening verified - root login disabled, password auth disabled*
