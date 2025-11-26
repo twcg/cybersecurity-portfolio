@@ -12,9 +12,9 @@
 |--------|-------------|
 | **Deployment Time** | 95% faster (45min → 45sec) |
 | **Critical Vulnerabilities** | 0 in hardened SSH |
+| **NIST 800-53 Compliance** | 5/5 controls automated |
 | **CIS Compliance** | 71% of SSH controls implemented |
 | **Automation Coverage** | 100% of security configurations |
-
 ---
 
 ## 🛠️ Featured Projects
@@ -31,11 +31,11 @@
 - **Results**: Identified and remediated cryptographic weaknesses in SSH configuration
 - **Evidence**: [View Case Study](02-automated-implementation/assets/security-scans/vulnerability-remediation.md)
 
-### 📋 Compliance-as-Code Framework
+- ### 📋 Compliance-as-Code Framework
 **Audit-ready security controls**
 - **Standards**: CIS Ubuntu Linux 24.04 LTS, NIST 800-53 alignment
-- **Coverage**: 5/7 SSH controls implemented and automated
-- **Evidence**: [View Compliance Dashboard](#-security-compliance-dashboard)
+- **Coverage**: 5/5 NIST controls + 5/7 CIS controls implemented and automated
+- **Evidence**: [View Compliance Reports](03-compliance-reports/)
 
 ---
 
@@ -53,6 +53,18 @@
 | Auditd implementation | 4.1.1.1 | 🟡 **Planned** | Target: Q4 2025 |
 
 **Progress: ██████████ 71%** (5/7 controls implemented)
+
+### NIST 800-53 Controls (Automated)
+| Control | Name | Status | Evidence |
+|---------|------|--------|----------|
+| AC-2 | Account Management | ✅ **Automated** | [View Mapping](03-compliance-reports/) |
+| AC-3 | Access Enforcement | ✅ **Automated** | [View Mapping](03-compliance-reports/) |
+| CM-6 | Configuration Settings | ✅ **Automated** | [View Mapping](03-compliance-reports/) |
+| IA-2 | Identification & Authentication | ✅ **Automated** | [View Mapping](03-compliance-reports/) |
+| SC-28 | Protection of Information at Rest | ✅ **Automated** | [View Mapping](03-compliance-reports/) |
+
+**NIST Progress: ██████████ 100%** (5/5 controls automated)
+
 
 ---
 
@@ -83,7 +95,18 @@
 - [Compliance Verification](02-automated-implementation/assets/security-scans/security-scan-post-ansible/04-rescan-results/results-after-patchpng.png)
 
 ---
+## 📄 Compliance Evidence
 
+### Automated Validation
+- [NIST 800-53 Compliance Reports](03-compliance-reports/assets/)
+- [Compliance Automation Framework](03-compliance-reports/)
+- [Control Implementation Evidence](03-compliance-reports/README.md)
+
+### Technical Implementation
+- [Ansible Automation Code](02-automated-implementation/ansible/)
+- [SSH Hardening Configuration](02-automated-implementation/ansible/roles/ssh-hardening/templates/sshd_config.j2)
+- [Vulnerability Management Case Study](02-automated-implementation/assets/security-scans/vulnerability-remediation.md)
+  
 ## 🚀 Quick Start
 
 ```bash
