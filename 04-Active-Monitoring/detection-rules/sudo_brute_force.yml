@@ -1,0 +1,26 @@
+title: Sudo Bruteforce Attempt
+id: a1b2c3d4-1234-5678-abcd-000000000002
+status: experimental
+description: >
+  Detects multiple failed sudo command attempts followed by a successful one,
+  which may indicate password guessing or brute-force privilege escalation.
+author: Your Name
+date: 2025/12/01
+logsource:
+  product: linux
+  service: sudo
+detection:
+  selection_fail:
+    - 'sudo: .* : user NOT in sudoers'
+    - 'sudo: .* : 3 incorrect password attempts'
+  selection_success:
+    - 'sudo: .* : COMMAND=.*' # This captures successful sudo command execution
+  timeframe: 2m
+  condition: 3 of selection_fail within timeframe and 1 of selection_success
+falsepositives:
+  - A user legitimately forgetting their password a few times.
+level: medium
+tags:
+  - attack.privilege_escalation
+  - attack.t1078 # Valid Accounts
+  - attack.t1110 # Brute Force

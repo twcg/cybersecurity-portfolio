@@ -1,0 +1,25 @@
+title: SSH Root Login Attempt
+id: a1b2c3d4-1234-5678-abcd-000000000001 # You can generate a new unique ID later
+status: experimental
+description: >
+  Detects any attempt to authenticate as the root user via SSH.
+  In a properly hardened system, 'PermitRootLogin' should be set to 'no',
+  making any such login attempt highly suspicious and indicative of brute-force or targeted attack.
+author: Your Name
+date: 2025/12/01 # Use today's date
+logsource:
+  product: linux
+  service: sshd
+detection:
+  keywords:
+    - 'Failed password for root'
+    - 'Accepted password for root' # This would be a critical finding
+    - 'Invalid user root'
+  condition: keywords
+falsepositives:
+  - Legitimate administrative activity in environments where root login is permitted.
+level: high
+tags:
+  - attack.initial_access
+  - attack.t1078 # Valid Accounts
+  - attack.t1110 # Brute Force

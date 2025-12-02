@@ -1,0 +1,179 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\froman\fcharset0 Times-Bold;\f1\froman\fcharset0 Times-Roman;\f2\fmodern\fcharset0 Courier;
+\f3\fmodern\fcharset0 Courier-Bold;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid201\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid3}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\b\fs28 \cf0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 Incident Detection Logic\
+
+\f1\b0\fs24 \strokec2 \
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 To transition from preventive hardening to active defense, detection rules were authored. These rules are written in the 
+\f0\b Sigma
+\f1\b0  format\'97an open standard that allows them to be converted for use in any major Security Information and Event Management (SIEM) system (e.g., Splunk, Elastic SIEM, Wazuh). The rules target specific attack patterns that our hardening controls are designed to mitigate.\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f0\b\fs28 \cf0 \strokec2 \
+\uc0\u55357 \u56589  Rule 1: SSH Root Login Attempt - Detailed Presentation\
+
+\fs24 \strokec2 \
+\pard\pardeftab720\sa319\partightenfactor0
+\cf0 Detection Rule: SSH Root Login Attempt\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 \strokec2 1. Explanation & Rationale:
+\f1\b0 \uc0\u8232 This rule detects any authentication attempt targeting the 
+\f2\fs26 root
+\f1\fs24  account over SSH. Our Ansible hardening playbook explicitly sets 
+\f2\fs26 PermitRootLogin no
+\f1\fs24  in the SSH configuration. Therefore, in our secured environment, 
+\f0\b any SSH packet directed at the root user is by definition unauthorized and malicious
+\f1\b0 , signaling a brute-force or targeted attack. This rule turns a preventive control into a detective one.\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b \cf0 \strokec2 2. Rule Code (Sigma):\
+\
+title: SSH Root Login Attempt\
+id: a1b2c3d4-1234-5678-abcd-000000000001\
+status: experimental\
+description: >\
+  Detects any attempt to authenticate as the root user via SSH.\
+  In a properly hardened system, 'PermitRootLogin' should be set to 'no',\
+  making any such login attempt highly suspicious.\
+author: [Your Name]\
+date: 2025/12/01\
+logsource:\
+  product: linux\
+  service: sshd\
+detection:\
+  keywords:\
+    - 'Failed password for root'\
+    - 'Accepted password for root'\
+    - 'Invalid user root'\
+  condition: keywords\
+level: high\
+tags:\
+  - attack.initial_access\
+  - attack.t1078 # Valid Accounts\
+  - attack.t1110 # Brute Force\
+\
+3. Key Components & Purpose:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa240\partightenfactor0
+\ls1\ilvl0
+\f3\fs26 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 logsource
+\f1\b0\fs24 : Defines where to look\'97the SSH daemon (
+\f2\fs26 sshd
+\f1\fs24 ) logs on Linux systems.\
+\ls1\ilvl0
+\f3\b\fs26 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 detection
+\f1\b0\fs24 : The core logic. It searches log lines for the defined 
+\f2\fs26 keywords
+\f1\fs24 . The 
+\f2\fs26 condition
+\f1\fs24  states that finding any one of them should trigger an alert.\
+\ls1\ilvl0
+\f3\b\fs26 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 tags
+\f1\b0\fs24 : These map the rule to the 
+\f0\b MITRE ATT&CK\'ae framework
+\f1\b0 , a global knowledge base of adversary tactics. 
+\f2\fs26 attack.initial_access (T1078, T1110)
+\f1\fs24  tells a security analyst that this alert relates to the initial stage of a cyber attack, involving brute-forcing valid accounts.\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa240\partightenfactor0
+\ls1\ilvl0
+\f0\b \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 SIEM Deployment
+\f1\b0 : This YAML file would be imported into a SIEM. The SIEM would then continuously monitor the 
+\f2\fs26 /var/log/auth.log
+\f1\fs24  file on our Ubuntu servers, generate a 
+\f0\b high-priority alert
+\f1\b0  in the security console, and potentially notify an engineer via email or Slack if any of the keywords are matched.
+\f0\b\fs28 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 \
+\pard\tx720\pardeftab720\sa240\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa280\partightenfactor0
+\ls2\ilvl0\cf0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 {\listtext	\'95	}\uc0\u55357 \u57057 \u65039  Rule 2: Sudo Bruteforce Attempt - Detailed Presentation\
+\
+\pard\pardeftab720\sa319\partightenfactor0
+
+\fs24 \cf0 \strokec2 Detection Rule: Sudo Bruteforce Attempt\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 \strokec2 1. Explanation & Rationale:
+\f1\b0 \uc0\u8232 This rule looks for patterns of failed 
+\f2\fs26 sudo
+\f1\fs24  commands followed by a success. A user occasionally mistyping their password is normal, but 
+\f0\b several rapid failures immediately preceding a successful privilege escalation
+\f1\b0  is a strong indicator of password guessing or brute-force attack. This detects attempts to compromise a standard user account and then escalate its privileges.\
+\pard\pardeftab720\partightenfactor0
+
+\f0\b \cf0 \strokec2 2. Rule Code (Sigma):\
+title: Sudo Bruteforce Attempt\
+id: a1b2c3d4-1234-5678-abcd-000000000002\
+status: experimental\
+description: >\
+  Detects multiple failed sudo command attempts followed by a successful one.\
+author: [Your Name]\
+date: 2025/12/01\
+logsource:\
+  product: linux\
+  service: sudo\
+detection:\
+  selection_fail:\
+    - 'sudo: .* : user NOT in sudoers'\
+    - 'sudo: .* : 3 incorrect password attempts'\
+  selection_success:\
+    - 'sudo: .* : COMMAND=.*'\
+  timeframe: 2m\
+  condition: 3 of selection_fail within timeframe and 1 of selection_success\
+level: medium\
+tags:\
+  - attack.privilege_escalation\
+  - attack.t1078 # Valid Accounts\
+  - attack.t1110 # Brute Force\
+\
+3. Key Components & Purpose:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa240\partightenfactor0
+\ls3\ilvl0
+\f3\fs26 \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 logsource
+\f1\b0\fs24 : Targets logs generated by the 
+\f2\fs26 sudo
+\f1\fs24  command.\
+\ls3\ilvl0
+\f3\b\fs26 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 detection
+\f1\b0\fs24 : Uses a more advanced correlation logic. It defines two sets of patterns (
+\f2\fs26 selection_fail
+\f1\fs24  and 
+\f2\fs26 selection_success
+\f1\fs24 ). The 
+\f2\fs26 condition
+\f1\fs24  requires that 
+\f0\b at least 3 failure patterns occur within a 2-minute (
+\f3\fs26 timeframe
+\f0\fs24 ) window AND are followed by at least 1 success pattern
+\f1\b0 . This reduces false alarms from simple user errors.\
+\ls3\ilvl0
+\f3\b\fs26 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 tags
+\f1\b0\fs24 : Maps this to the 
+\f0\b MITRE ATT&CK 
+\f3\fs26 privilege_escalation
+\f1\b0\fs24  tactic, showing an understanding that the attack is moving to a higher stage.\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa240\partightenfactor0
+\ls3\ilvl0
+\f0\b \cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 SIEM Deployment
+\f1\b0 : In a SIEM, this rule would demonstrate 
+\f0\b behavioral correlation
+\f1\b0  across multiple log events over time, which is a core strength of modern detection systems.}
