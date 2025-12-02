@@ -15,7 +15,7 @@
 | **NIST 800-53 Compliance** | 5/5 controls automated |
 | **CIS Compliance** | 71% of SSH controls implemented |
 | **Audit-Ready** | 100% of NIST 800-53 controls mapped to automated checks |
-| **Lynis Hardening Index** | 58 | 82 | **↑ 24 points** |
+| **Lynis Hardening Index** | Hardening Index improved by +24 points (58 → 82) |
 | **Automation Coverage** | 100% of security configurations |
 ---
 
