@@ -13,6 +13,8 @@
 | **Deployment Time** | 95% faster (45min → 45sec) |
 | **Critical Vulnerabilities** | 0 in hardened SSH |
 | **NIST 800-53 Compliance** | 5/5 controls automated |
+| **Audit-Ready** |
+| **Lynis Hardening Index** | 58 | 82 | **↑ 24 points** |
 | **CIS Compliance** | 71% of SSH controls implemented |
 | **Automation Coverage** | 100% of security configurations |
 ---
