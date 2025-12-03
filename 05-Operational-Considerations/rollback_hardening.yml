@@ -1,0 +1,43 @@
+---
+# rollback_hardening.yml
+- name: Emergency Rollback - Security Hardening
+  hosts: all
+  become: yes
+  vars:
+    backup_dir: /backup/security_hardening
+
+  tasks:
+    # 1. Check if backup exists
+    - name: Verify backup directory exists
+      ansible.builtin.stat:
+        path: "{{ backup_dir }}"
+      register: backup_status
+    
+    # 2. Restore SSH configuration (example)
+    - name: Restore original SSH configuration
+      ansible.builtin.copy:
+        remote_src: yes
+        src: "{{ backup_dir }}/sshd_config.backup"
+        dest: /etc/ssh/sshd_config
+        backup: yes
+        mode: '0600'
+      when: backup_status.stat.exists
+      notify: restart ssh
+
+    # 3. Remove installed security packages
+    - name: Remove security packages
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: absent
+      loop:
+        - fail2ban
+        - auditd
+        - aide
+      when: backup_status.stat.exists
+
+  handlers:
+    - name: restart ssh
+      ansible.builtin.service:
+        name: ssh
+        state: restarted
+        enabled: yes

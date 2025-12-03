@@ -1,0 +1,25 @@
+---
+# backup_configs.yml
+- name: Pre-Hardening System Backup
+  hosts: all
+  become: yes
+  vars:
+    backup_dir: /backup/security_hardening
+  
+  tasks:
+    - name: Create backup directory
+      ansible.builtin.file:
+        path: "{{ backup_dir }}"
+        state: directory
+        mode: '0700'
+    
+    - name: Backup critical configuration files
+      ansible.builtin.copy:
+        remote_src: yes
+        src: "{{ item }}"
+        dest: "{{ backup_dir }}/{{ item | basename }}.backup"
+      loop:
+        - /etc/ssh/sshd_config
+        - /etc/sysctl.conf
+        - /etc/pam.d/common-password
+        - /etc/audit/audit.rules
