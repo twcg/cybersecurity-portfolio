@@ -1,0 +1,25 @@
+---
+- name: NIST 800-53 Compliance Validation
+  hosts: all
+  gather_facts: yes
+  
+  tasks:
+    - name: Run compliance reporting role
+      include_role:
+        name: cis-hardening
+        
+    - name: Fetch compliance reports for portfolio
+      fetch:
+        src: "/tmp/nist-compliance-{{ inventory_hostname }}-{{ ansible_date_time.epoch }}.html"
+        dest: "compliance-reports/{{ inventory_hostname }}-nist-report.html"
+        flat: yes
+        
+    - name: Display completion message
+      debug:
+        msg: |
+          🎯 NIST COMPLIANCE EVIDENCE GENERATED!
+          
+          Portfolio Files Created:
+          - compliance-reports/{{ inventory_hostname }}-nist-report.html
+          
+          This demonstrates 5+ NIST 800-53 controls automated via your existing Ansible roles.

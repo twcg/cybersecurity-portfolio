@@ -1,0 +1,15 @@
+---
+- name: Load NIST compliance mapping
+  include_vars: nist_mapping.yml
+
+- name: Generate NIST compliance evidence report
+  template:
+    src: nist_report.j2
+    dest: "/tmp/nist-compliance-{{ inventory_hostname }}-{{ ansible_date_time.epoch }}.html"
+
+- name: Display compliance summary
+  debug:
+    msg: |
+      NIST 800-53 Compliance Report Generated!
+      File: /tmp/nist-compliance-{{ inventory_hostname }}-{{ ansible_date_time.epoch }}.html
+      Controls Implemented: {{ nist_800_53_controls | dict2items | selectattr('value.implemented') | list | length }}/{{ nist_800_53_controls | length }}

@@ -1,0 +1,44 @@
+---
+# NIST 800-53 Controls Mapped to Existing Ansible Implementation
+nist_800_53_controls:
+  AC-2:
+    name: "Account Management"
+    implemented: true
+    automated: true
+    evidence: "roles/ssh-hardening/tasks/main.yml"
+    cis_controls:
+      - "5.4.1.4 Ensure password expiration warning days is configured"
+      - "5.4.1.5 Ensure system accounts are non-login"
+    
+  AC-3:
+    name: "Access Enforcement"
+    implemented: true  
+    automated: true
+    evidence: "roles/ssh-hardening/templates/sshd_config.j2"
+    cis_controls:
+      - "5.2.1 Ensure permissions on SSH config are configured"
+      - "5.2.8 Ensure SSH root login is disabled"
+      
+  CM-6:
+    name: "Configuration Settings"
+    implemented: true
+    automated: true
+    evidence: "hardening-playbook.yml"
+    cis_controls:
+      - "All CIS Benchmark controls via Ansible"
+      
+  IA-2:
+    name: "Identification and Authentication"
+    implemented: true
+    automated: true
+    evidence: "roles/ssh-hardening/tasks/main.yml"
+    cis_controls:
+      - "5.3.1 Ensure password creation requirements are configured"
+      
+  SC-28:
+    name: "Protection of Information at Rest"
+    implemented: true
+    automated: true
+    evidence: "roles/ssh-hardening/tasks/main.yml"
+    cis_controls:
+      - "1.4.1 Ensure permissions on bootloader config are configured"

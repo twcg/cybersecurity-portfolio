@@ -1,0 +1,16 @@
+---
+- name: Collect existing security configuration evidence
+  shell: |
+    echo "=== SSH Configuration ==="
+    sudo sshd -T
+    echo "=== Firewall Status ==="  
+    sudo ufw status verbose
+    echo "=== User Accounts ==="
+    grep -E '^[^:]+:[*!]' /etc/shadow | cut -d: -f1
+  register: security_evidence
+  changed_when: false
+
+- name: Save security evidence to file
+  copy:
+    content: "{{ security_evidence.stdout }}"
+    dest: "/tmp/security-evidence-{{ inventory_hostname }}-{{ ansible_date_time.epoch }}.txt"
