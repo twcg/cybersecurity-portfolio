@@ -3,6 +3,13 @@
   hosts: all
   become: yes
   gather_facts: yes
-  
+
+  collections:
+    - community.general
+
   roles:
-    - ssh-hardening
+    - role: ssh-hardening
+    - role: firewall-ufw  
+    - role: auditd-hardening
+    - role: cis-hardening
+    - role: compliance
