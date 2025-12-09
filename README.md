@@ -54,7 +54,7 @@
 | Set MaxAuthTries | 5.2.5 | ✅ **Implemented** | [View Code](https://github.com/twcg/cybersecurity-portfolio/blob/cybersecurity-portfolio/02-automated-implementation/ansible/roles/ssh-hardening/templates/sshd_config.j2#L6) |
 | Configure ClientAlive intervals | 5.2.12 | ✅ **Implemented** | [View Code](https://github.com/twcg/cybersecurity-portfolio/blob/cybersecurity-portfolio/02-automated-implementation/ansible/roles/ssh-hardening/templates/sshd_config.j2#L7) |
 | Firewall configuration | 3.5.1.1 | ✅ **Implemented** | [View Code](02-automated-implementation/ansible/roles/compliance/nist-compliance-playbook.yml) |
-| Auditd implementation | 4.1.1.1 | 🟡 **Planned** | Target: Q4 2025 |
+| Auditd implementation | 4.1.1.1 | ✅ **Implemented** | [View Code] (https://github.com/twcg/cybersecurity-portfolio/tree/cybersecurity-portfolio/02-automated-implementation/ansible/roles/auditd-hardening) |
 
 **Progress: ██████████ 71%** (5/7 controls implemented)
 
