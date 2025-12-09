@@ -1,0 +1,11 @@
+---
+- name: restart auditd
+  ansible.builtin.shell:
+    cmd: |
+      # Send HUP signal to reload configuration
+      pkill -HUP auditd 2>/dev/null || true
+      # If auditd wasn't running, start it
+      if ! pgrep auditd >/dev/null; then
+        /usr/sbin/auditd 2>/dev/null || true
+      fi
+    creates: /var/run/auditd.pid

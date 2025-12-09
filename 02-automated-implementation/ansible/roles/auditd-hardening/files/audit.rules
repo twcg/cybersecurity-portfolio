@@ -1,0 +1,46 @@
+# Critical system files
+-w /etc/passwd -p wa -k identity
+-w /etc/group -p wa -k identity
+-w /etc/shadow -p wa -k identity
+-w /etc/gshadow -p wa -k identity
+-w /etc/sudoers -p wa -k privilege_escalation
+-w /etc/sudoers.d -p wa -k privilege_escalation
+
+# System administration actions
+-w /usr/bin/sudo -p x -k privilege_escalation
+-w /usr/bin/su -p x -k privilege_escalation
+
+# SSH configuration
+-w /etc/ssh/sshd_config -p wa -k sshd_config
+-w /etc/ssh/sshd_config.d -p wa -k sshd_config
+
+# Audit configuration itself
+-w /etc/audit/auditd.conf -p wa -k auditd_config
+-w /etc/audit/rules.d/audit.rules -p wa -k auditd_rules
+
+# Kernel module manipulation
+-w /sbin/insmod -p x -k kernel_modules
+-w /sbin/rmmod -p x -k kernel_modules
+-w /sbin/modprobe -p x -k kernel_modules
+-w /etc/modprobe.d -p wa -k kernel_modules
+
+# Time changes
+-a always,exit -F arch=b64 -S adjtimex -S settimeofday -k time_change
+-a always,exit -F arch=b32 -S adjtimex -S settimeofday -S stime -k time_change
+-w /etc/localtime -p wa -k time_change
+
+# Network configuration
+-w /etc/hosts -p wa -k network_modifications
+-w /etc/hostname -p wa -k network_modifications
+-w /etc/network -p wa -k network_modifications
+
+# System startup
+-w /etc/init.d -p wa -k system_startup
+-w /etc/systemd -p wa -k system_startup
+
+# Log file tampering
+-w /var/log/ -p wa -k log_tampering
+
+# Privileged commands
+-w /bin/passwd -p x -k privileged_passwd
+-w /usr/sbin/visudo -p x -k privileged_visudo
